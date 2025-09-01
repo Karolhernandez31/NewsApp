@@ -1,0 +1,25 @@
+form {
+  padding: 20px;
+}
+
+ion-item {
+  --border-color: var(--ion-color-medium);
+  margin-bottom: 5px;
+
+  &.item-has-focus {
+    --border-color: var(--ion-color-primary);
+  }
+
+  &.ion-invalid.ion-touched {
+    --border-color: var(--ion-color-danger);
+  }
+}
+
+.error-message {
+  margin: 0 0 15px 16px;
+  font-size: 14px;
+}
+
+ion-button {
+  margin-top: 20px;
+}

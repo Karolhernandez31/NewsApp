@@ -1,0 +1,140 @@
+ion-content {
+  --background: #f5f5f5;
+}
+
+.logo-container {
+  text-align: center;
+  margin: 30px 0 40px;
+
+  .logo {
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    color: var(--ion-color-primary);
+    margin: 0 0 5px;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.input-item {
+  --border-radius: 8px;
+  --background: #fff;
+  margin-bottom: 5px;
+  border: 1px solid var(--ion-color-light);
+
+  &.invalid {
+    border-color: var(--ion-color-danger);
+  }
+
+  ion-icon {
+    color: var(--ion-color-medium);
+    margin-right: 10px;
+  }
+}
+
+.error-message {
+  margin: 0 0 15px 16px;
+  font-size: 14px;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+
+  ion-item {
+    --background: transparent;
+
+    ion-checkbox {
+      --size: 18px;
+      --checkbox-background-checked: var(--ion-color-primary);
+    }
+
+    ion-label {
+      font-size: 14px;
+    }
+  }
+
+  .forgot-password {
+    font-size: 14px;
+    --color: var(--ion-color-primary);
+  }
+}
+
+.login-button {
+  --border-radius: 8px;
+  height: 50px;
+  font-weight: 600;
+  margin: 10px 0 25px;
+}
+
+.register-container {
+  text-align: center;
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  ion-button {
+    --padding-start: 4px;
+    --padding-end: 4px;
+    font-size: 14px;
+  }
+}
+
+.social-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 30px 0 20px;
+  color: var(--ion-color-medium);
+  font-size: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-light-shade);
+  }
+
+  &::before {
+    margin-right: 10px;
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+}
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+
+  .social-button {
+    flex: 1;
+    --border-radius: 8px;
+    --border-color: var(--ion-color-light-shade);
+    --color: var(--ion-color-dark);
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+// Estilos para el estado de carga
+ion-spinner {
+  width: 24px;
+  height: 24px;
+}
