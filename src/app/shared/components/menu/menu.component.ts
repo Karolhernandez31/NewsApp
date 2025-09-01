@@ -16,16 +16,14 @@ export class MenuComponent implements OnInit {
   constructor(private menuController: MenuController, private router: Router, private modalCtrl: ModalController) {}
 
   ngOnInit() {}
-  // Cerrar sesión
   logout() {
-    // Tu lógica de logout aquí
     localStorage.removeItem('loggedUser');
     this.router.navigate(['/login']);
     this.menuController.close();
   }
 
    async openSettings() {
-    this.menuController.close('main-menu'); // cierra el menú
+    this.menuController.close('main-menu');
     const modal = await this.modalCtrl.create({
       component: UserUpdateComponent,
     });

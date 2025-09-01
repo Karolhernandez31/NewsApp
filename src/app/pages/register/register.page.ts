@@ -1,8 +1,6 @@
 import { Router } from '@angular/router';
 import { UserService } from './../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/services/http.service';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 
@@ -32,7 +30,7 @@ export class RegisterPage implements OnInit {
       return;
     }
     this.toastSrv.show('Registro completado correctamente', 'success');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   onCancel() {
