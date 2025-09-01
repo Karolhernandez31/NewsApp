@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-user-form
+    [mode]="'edit'"
+    [userData]="currentUser"
+    (formSubmit)="onProfileUpdate($event)"
+    (formCancel)="onCancel()">
+  </app-user-form>
+</ion-content>
