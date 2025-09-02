@@ -35,6 +35,7 @@ export class UserFormComponent implements OnInit {
   @Input() userData?: User;
   @Output() formSubmit = new EventEmitter<any>();
   @Output() formCancel = new EventEmitter<void>();
+  @Input() showLoginLink: boolean = true;
 
   userForm: FormGroup;
   countries: any[] = [];

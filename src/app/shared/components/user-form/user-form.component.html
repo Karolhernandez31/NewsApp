@@ -56,22 +56,23 @@
     </div>
 
     <!-- Country Field -->
-<div class="form-field" [class.invalid]="isInvalid('country')">
-  <app-country-select
-    [label]="'País'"
-    [placeholder]="'Selecciona un país'"
-    [countries]="countries"
-    [selectedCountry]="getSelectedCountry()"
-    (countryChange)="onCountryChange($event)"
-    [class.has-error]="isInvalid('country')">
-  </app-country-select>
+    <div class="form-field" [class.invalid]="isInvalid('country')">
+      <app-country-select
+        [label]="'País'"
+        [placeholder]="'Selecciona un país'"
+        [countries]="countries"
+        [selectedCountry]="getSelectedCountry()"
+        (countryChange)="onCountryChange($event)"
+        [class.has-error]="isInvalid('country')"
+      >
+      </app-country-select>
 
-  @if (isInvalid('country')) {
-    <div class="error-message">
-      <ion-text color="danger">Debe seleccionar un país</ion-text>
+      @if (isInvalid('country')) {
+      <div class="error-message">
+        <ion-text color="danger">Debe seleccionar un país</ion-text>
+      </div>
+      }
     </div>
-  }
-</div>
 
     <!-- Email Field -->
     <div class="form-field" [class.invalid]="isInvalid('email')">
@@ -157,11 +158,12 @@
       ></app-button>
     </div>
   </form>
-
+  @if(showLoginLink) {
   <div class="form-footer">
     <p>
       ¿Ya tienes una cuenta?
       <a href="/login" class="login-link">Iniciar sesión</a>
     </p>
   </div>
+  }
 </div>
