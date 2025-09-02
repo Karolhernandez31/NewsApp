@@ -98,56 +98,6 @@
     display: flex;
     gap: 15px;
     margin-top: 30px;
-
-    ion-button {
-      --border-radius: 12px;
-      --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      height: 50px;
-      font-weight: 600;
-      text-transform: none;
-      transition: all 0.3s ease;
-
-      &.cancel-btn {
-        --background: transparent;
-        --color: #6c757d;
-        --border-color: #6c757d;
-        --border-width: 1px;
-        --background-hover: #f8f9fa;
-        --color-hover: #495057;
-      }
-
-      &.submit-btn {
-        --background: linear-gradient(135deg, #3498db 0%, #2b374a 100%);
-        --background-hover: linear-gradient(135deg, #2980b9 0%, #1a2530 100%);
-        --background-activated: linear-gradient(135deg, #2980b9 0%, #1a2530 100%);
-        --background-disabled: #bdc3c7;
-        position: relative;
-
-        .btn-text {
-          position: relative;
-          z-index: 2;
-        }
-
-        .btn-spinner {
-          position: absolute;
-          z-index: 3;
-        }
-
-        &[disabled] {
-          --background: #e9ecef;
-          --color: #6c757d;
-        }
-      }
-
-      &:hover {
-        transform: translateY(-2px);
-        --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
   }
 
   .form-footer {

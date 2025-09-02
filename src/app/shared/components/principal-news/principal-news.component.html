@@ -1,0 +1,43 @@
+<div class="featured-card">
+  <div class="featured-image">
+    <img
+      [src]="news.urlToImage || 'assets/images/default-news.jpg'"
+      [alt]="news.title"
+      onerror="this.src='assets/images/default-news.jpg'"
+    />
+    <div class="image-overlay">
+      <div class="category-badge">
+        <ion-icon name="flame"></ion-icon>
+        <span>Destacada</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-content">
+    <div class="news-meta">
+      <div class="source-info">
+        <div class="source-avatar">
+          <ion-icon name="radio"></ion-icon>
+        </div>
+        <span class="source-name">{{ news.source.name }}</span>
+      </div>
+      <div class="meta-details">
+        <span class="date">{{ news.publishedAt }}</span>
+        <span class="bullet">•</span>
+        <span class="author" *ngIf="news.author">{{ news.author }}</span>
+      </div>
+    </div>
+
+    <h1 class="featured-title">{{ news.title }}</h1>
+
+    <p class="featured-description" *ngIf="news.description">
+      {{ news.description }}
+    </p>
+
+    <div class="featured-actions">
+      <app-button text="Ver mas..." color="orange" [iconStart]="'book-outline'"
+        (buttonClick)="openNews(news.title)"></app-button
+      >
+    </div>
+  </div>
+</div>

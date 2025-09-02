@@ -1,0 +1,32 @@
+<div
+  class="news-card"
+  (click)="openNews()"
+>
+  <div class="card-image">
+    <img
+      [src]="news.urlToImage || 'assets/images/default-news.jpg'"
+      [alt]="news.title"
+      onerror="this.src='assets/images/default-news.jpg'"
+    />
+    <div class="image-gradient"></div>
+  </div>
+
+  <div class="card-content">
+    <div class="card-meta">
+      <div class="source-badge">
+        <ion-icon name="radio-outline"></ion-icon>
+        <span>{{ news.source.name }}</span>
+      </div>
+      <div class="time-badge">
+        <ion-icon name="time-outline"></ion-icon>
+        <span>{{ news.publishedAt }}</span>
+      </div>
+    </div>
+
+    <h3 class="card-title">{{ news.title }}</h3>
+
+    <p class="card-description">
+      {{ news.description }}
+    </p>
+  </div>
+</div>

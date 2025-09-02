@@ -7,13 +7,20 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { InputComponent } from './components/input/input.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CardComponent } from './components/card/card.component';
+import { PrincipalNewsComponent } from './components/principal-news/principal-news.component';
+import { ButtonComponent } from './components/button/button.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const COMPONENTS = [
   UserFormComponent,
   UserUpdateComponent,
   ModalComponent,
   InputComponent,
-  HeaderComponent
+  HeaderComponent,
+  CardComponent,
+  PrincipalNewsComponent,
+  ButtonComponent
 ];
 
 @NgModule({

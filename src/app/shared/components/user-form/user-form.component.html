@@ -1,7 +1,12 @@
 <div class="register-container">
   <div class="form-header">
-    <h1 class="form-title">{{ isEditMode ? 'Actualizar Perfil' : 'Crear Cuenta' }}</h1>
-    <p class="form-subtitle">Completa tus datos para {{ isEditMode ? 'actualizar tu perfil' : 'crear tu cuenta' }}</p>
+    <h1 class="form-title">
+      {{ isEditMode ? "Actualizar Perfil" : "Crear Cuenta" }}
+    </h1>
+    <p class="form-subtitle">
+      Completa tus datos para
+      {{ isEditMode ? "actualizar tu perfil" : "crear tu cuenta" }}
+    </p>
   </div>
 
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="custom-form">
@@ -12,20 +17,20 @@
         type="text"
         placeholder="Ingresa tu nombre"
         formControlName="name"
-        >
+      >
       </app-input>
       @if (isInvalid('name')) {
-        <div class="error-message">
-          @if (isInvalid('name','required')) {
-            <ion-text color="danger">El nombre es requerido</ion-text>
-          }
-          @if (isInvalid('name','minlength')) {
-            <ion-text color="danger">El nombre debe tener al menos 3 caracteres</ion-text>
-          }
-          @if (isInvalid('name','pattern')) {
-            <ion-text color="danger">El nombre no puede contener números</ion-text>
-          }
-        </div>
+      <div class="error-message">
+        @if (isInvalid('name','required')) {
+        <ion-text color="danger">El nombre es requerido</ion-text>
+        } @if (isInvalid('name','minlength')) {
+        <ion-text color="danger"
+          >El nombre debe tener al menos 3 caracteres</ion-text
+        >
+        } @if (isInvalid('name','pattern')) {
+        <ion-text color="danger">El nombre no puede contener números</ion-text>
+        }
+      </div>
       }
     </div>
 
@@ -36,20 +41,22 @@
         type="text"
         placeholder="Ingresa tu apellido"
         formControlName="lastName"
-        >
+      >
       </app-input>
       @if (isInvalid('lastName')) {
-        <div class="error-message">
-          @if (isInvalid('lastName','required')) {
-            <ion-text color="danger">El apellido es requerido</ion-text>
-          }
-          @if (isInvalid('lastName','minlength')) {
-            <ion-text color="danger">El apellido debe tener al menos 3 caracteres</ion-text>
-          }
-          @if (isInvalid('lastName','pattern')) {
-            <ion-text color="danger">El apellido no puede contener números</ion-text>
-          }
-        </div>
+      <div class="error-message">
+        @if (isInvalid('lastName','required')) {
+        <ion-text color="danger">El apellido es requerido</ion-text>
+        } @if (isInvalid('lastName','minlength')) {
+        <ion-text color="danger"
+          >El apellido debe tener al menos 3 caracteres</ion-text
+        >
+        } @if (isInvalid('lastName','pattern')) {
+        <ion-text color="danger"
+          >El apellido no puede contener números</ion-text
+        >
+        }
+      </div>
       }
     </div>
 
@@ -61,20 +68,21 @@
           formControlName="country"
           interface="action-sheet"
           class="custom-select"
-          [class.has-value]="userForm.get('country')?.value">
+          [class.has-value]="userForm.get('country')?.value"
+        >
           <ion-select-option value="">Selecciona un país</ion-select-option>
           @for (country of countries; track country.iso2) {
-            <ion-select-option [value]="country.iso2">
-              {{ country.name }}
-            </ion-select-option>
+          <ion-select-option [value]="country.iso2">
+            {{ country.name }}
+          </ion-select-option>
           }
         </ion-select>
         <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
       </div>
       @if (isInvalid('country')) {
-        <div class="error-message">
-          <ion-text color="danger">Debe seleccionar un país</ion-text>
-        </div>
+      <div class="error-message">
+        <ion-text color="danger">Debe seleccionar un país</ion-text>
+      </div>
       }
     </div>
 
@@ -85,17 +93,16 @@
         type="email"
         placeholder="tu.email@ejemplo.com"
         formControlName="email"
-        >
+      >
       </app-input>
       @if (isInvalid('email')) {
-        <div class="error-message">
-          @if (isInvalid('email','required')) {
-            <ion-text color="danger">El email es requerido</ion-text>
-          }
-          @if (isInvalid('email','email')) {
-            <ion-text color="danger">Por favor ingrese un email válido</ion-text>
-          }
-        </div>
+      <div class="error-message">
+        @if (isInvalid('email','required')) {
+        <ion-text color="danger">El email es requerido</ion-text>
+        } @if (isInvalid('email','email')) {
+        <ion-text color="danger">Por favor ingrese un email válido</ion-text>
+        }
+      </div>
       }
     </div>
 
@@ -106,17 +113,18 @@
         type="password"
         placeholder="Crea una contraseña segura"
         formControlName="password"
-        >
+      >
       </app-input>
       @if (isInvalid('password')) {
-        <div class="error-message">
-          @if (isInvalid('password','required')) {
-            <ion-text color="danger">La contraseña es requerida</ion-text>
-          }
-          @if (isInvalid('password','minlength')) {
-            <ion-text color="danger">La contraseña debe tener al menos 6 caracteres</ion-text>
-          }
-        </div>
+      <div class="error-message">
+        @if (isInvalid('password','required')) {
+        <ion-text color="danger">La contraseña es requerida</ion-text>
+        } @if (isInvalid('password','minlength')) {
+        <ion-text color="danger"
+          >La contraseña debe tener al menos 6 caracteres</ion-text
+        >
+        }
+      </div>
       }
     </div>
 
@@ -127,17 +135,16 @@
         type="password"
         placeholder="Repite tu contraseña"
         formControlName="confirmPassword"
-        >
+      >
       </app-input>
       @if (isInvalid('confirmPassword')) {
-        <div class="error-message">
-          @if (isInvalid('confirmPassword','required')) {
-            <ion-text color="danger">Debe confirmar la contraseña</ion-text>
-          }
-          @if (isInvalid('confirmPassword','passwordMismatch')) {
-            <ion-text color="danger">Las contraseñas no coinciden</ion-text>
-          }
-        </div>
+      <div class="error-message">
+        @if (isInvalid('confirmPassword','required')) {
+        <ion-text color="danger">Debe confirmar la contraseña</ion-text>
+        } @if (isInvalid('confirmPassword','passwordMismatch')) {
+        <ion-text color="danger">Las contraseñas no coinciden</ion-text>
+        }
+      </div>
       }
     </div>
 
@@ -148,25 +155,26 @@
         fill="outline"
         expand="block"
         class="cancel-btn"
-        (click)="onCancel()">
+        (click)="onCancel()"
+      >
         Cancelar
       </ion-button>
 
-      <ion-button
-        type="submit"
-        expand="block"
-        class="submit-btn"
+      <app-button
+        (buttonClick)="onSubmit()"
+        [color]="'primary'"
+        [text]="isEditMode ? 'Actualizar' : 'Registrarse'"
+        [loading]="isLoading"
         [disabled]="!userForm.valid"
-        [class.loading]="isLoading">
-        <span class="btn-text">{{ isEditMode ? 'Actualizar' : 'Registrarse' }}</span>
-        @if (isLoading) {
-          <ion-spinner name="crescent" class="btn-spinner"></ion-spinner>
-        }
-      </ion-button>
+        expand="block"
+      ></app-button>
     </div>
   </form>
 
   <div class="form-footer">
-    <p>¿Ya tienes una cuenta? <a href="/login" class="login-link">Iniciar sesión</a></p>
+    <p>
+      ¿Ya tienes una cuenta?
+      <a href="/login" class="login-link">Iniciar sesión</a>
+    </p>
   </div>
 </div>

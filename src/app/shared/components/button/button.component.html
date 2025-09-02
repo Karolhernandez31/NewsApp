@@ -1,0 +1,15 @@
+<ion-button
+  [fill]="fill"
+  [shape]="shape"
+  [size]="size"
+  [expand]="expand"
+  [disabled]="disabled"
+  [class]="'custom-button ' + color"
+  (click)="handleClick()">
+
+  <ion-icon *ngIf="iconStart" [name]="iconStart" slot="start"></ion-icon>
+  <span class="button-text">{{ text }}</span>
+  <ion-icon *ngIf="iconEnd" [name]="iconEnd" slot="end"></ion-icon>
+
+  <ion-spinner *ngIf="loading" name="crescent" class="button-spinner"></ion-spinner>
+</ion-button>
