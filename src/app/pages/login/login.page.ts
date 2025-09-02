@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -41,13 +40,11 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // Método para obtener el estado de validación de un campo
   isFieldInvalid(fieldName: string): boolean {
     const field = this.loginForm.get(fieldName);
     return field ? field.invalid && field.touched : false;
   }
 
-  // Método para obtener mensajes de error específicos
   getErrorMessage(fieldName: string): string {
     const field = this.loginForm.get(fieldName);
 

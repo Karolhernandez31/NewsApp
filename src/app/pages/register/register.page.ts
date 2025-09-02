@@ -24,7 +24,6 @@ export class RegisterPage implements OnInit {
 
   isKeyboardVisible = false;
 
-  // Detectar cuando el teclado se muestra/oculta
   @HostListener('window:keyboardWillShow', ['$event'])
   onKeyboardShow(event: any) {
     this.isKeyboardVisible = true;
@@ -37,13 +36,11 @@ export class RegisterPage implements OnInit {
     this.adjustForKeyboard(false);
   }
 
-  // Ajustar la interfaz para el teclado
   private adjustForKeyboard(visible: boolean) {
     const content = document.querySelector('ion-content');
     const formContainer = document.querySelector('.form-container');
 
     if (visible) {
-      // Hacer scroll al campo activo
       setTimeout(() => {
         const activeElement = document.activeElement;
         if (activeElement && content) {
@@ -54,7 +51,6 @@ export class RegisterPage implements OnInit {
   }
 
   onRegisterSubmit(userData: any) {
-    console.log('Datos de registro:', userData);
     const success = this.userSrv.registerUser(userData);
     if (!success) {
       this.toastSrv.show('El correo electrónico ya está en uso', 'danger');

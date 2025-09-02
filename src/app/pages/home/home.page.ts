@@ -1,26 +1,12 @@
 import { Component } from '@angular/core';
-import { ModalController, RefresherCustomEvent } from '@ionic/angular';
+import { RefresherCustomEvent } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { News } from 'src/app/interfaces/news';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 import { MenuEventsService } from 'src/app/shared/services/menu-events.service';
+import { environment } from 'src/environments/environment';
 
-export interface News {
-  source: Source;
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: Date;
-  content: string;
-}
-
-export interface Source {
-  id: null;
-  name: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -33,6 +19,7 @@ export class HomePage {
   latestNews: News[] = [];
   category = '';
   private sub!: Subscription;
+  private apiKey = environment.apiKey;
 
   constructor(
     private http: HttpService,
@@ -44,24 +31,13 @@ export class HomePage {
     this.loadNews();
     this.sub = this.menuEvents.menuClick$.subscribe(msg => {
       this.category = msg;
-      this.reloadNews(this.category);
+      this.loadNews(this.category);
     });
   }
 
-  async loadNews() {
-    const url =
-      'https://newsapi.org/v2/top-headlines?country=us&apiKey=b6cc0b2bff67407e88e1020ed967ac62';
-    await this.getNews(url);
-  }
-
-  reloadNews(category: string) {
-    const url = `https://newsapi.org/v2/top-headlines/sources?category=${category}&apiKey=b6cc0b2bff67407e88e1020ed967ac62`;
-    console.log('url ' ,url);
-    this.getNews(url);
-  }
-
-  async getNews(url: string) {
-    await this.loaderSrv.present('Loading news...');
+  async loadNews(category: string = 'tesla') {
+    const url = `https://newsapi.org/v2/everything?q=${category}&from=2025-08-02&sortBy=publishedAt&apiKey=${this.apiKey}`;
+    await this.loaderSrv.present('Cargando noticias...');
     this.http
       .get<{ articles: News[] }>(url)
       .then((res) => {

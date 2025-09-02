@@ -1,17 +1,14 @@
 <app-header [title]="'NewsApp'" [showBackButton]="true"></app-header>
 <ion-content class="news-detail-content">
   <div class="news-container">
-    <!-- Header de la noticia -->
     <div class="news-header">
       <h1 class="news-title">{{ news.title }}</h1>
     </div>
 
-    <!-- Imagen principal -->
     <div class="news-image-container" *ngIf="news.urlToImage">
       <img [src]="news.urlToImage" [alt]="news.title" class="news-image" />
     </div>
 
-    <!-- Información de la noticia -->
     <div class="news-info">
       <span class="source">{{ news.source.name }}</span>
       <span class="bullet">•</span>
@@ -20,14 +17,12 @@
       <span class="author">Por {{ news.author || "Redacción" }}</span>
     </div>
 
-    <!-- Contenido de la noticia -->
     <div class="news-body">
       <div class="news-content">
         <p>{{ news.content }}</p>
       </div>
     </div>
 
-    <!-- Botón de leer completo -->
     <div class="read-more-container">
       <app-button
         text="Leer artículo completo"

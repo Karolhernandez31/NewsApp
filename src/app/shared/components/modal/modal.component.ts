@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DefaultWebViewOptions, InAppBrowser } from '@capacitor/inappbrowser';
-import { News } from 'src/app/pages/home/home.page';
+import { News } from 'src/app/interfaces/news';
 
 @Component({
   selector: 'app-modal',

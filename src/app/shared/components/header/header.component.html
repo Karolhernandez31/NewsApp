@@ -2,13 +2,12 @@
   <ion-toolbar>
     @if(showBackButton){
     <ion-buttons slot="start">
-      <ion-button fill="clear" class="icon-btn round-btn back-btn">
+      <ion-button (click)="goBack()" fill="clear" class="icon-btn round-btn back-btn">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     }
 
-    <!-- Título -->
     <ion-title class="app-title">
       <div class="title-content">
         <ion-icon name="newspaper-outline" class="title-icon"></ion-icon>
@@ -16,7 +15,6 @@
       </div>
     </ion-title>
 
-    <!-- Botón derecho: perfil -->
     @if(showMenuButton){
     <ion-buttons slot="end">
       <ion-button fill="clear" class="icon-btn profile-btn" (click)="openMenu()">
@@ -29,6 +27,5 @@
     }
   </ion-toolbar>
 
-  <!-- Efecto de onda al hacer clic -->
   <div class="wave-effect"></div>
 </ion-header>

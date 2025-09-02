@@ -1,9 +1,8 @@
 import { User } from './../../../interfaces/user';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
 import { UserUpdateComponent } from '../user-update/user-update.component';
-import { UserFormComponent } from '../user-form/user-form.component';
 import { MenuEventsService } from '../../services/menu-events.service';
 
 @Component({
@@ -30,6 +29,7 @@ export class MenuComponent implements OnInit {
 
   onClick(category: string) {
     this.menuEvents.emitirClick(category);
+    this.menuController.close('main-menu');
   }
 
   logout() {

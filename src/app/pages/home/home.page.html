@@ -1,23 +1,19 @@
 <app-header [showMenuButton]="true"></app-header>
 <ion-content class="home-content">
-  <!-- Content -->
   <div class="news-container">
     <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-    <!-- Featured News -->
     <div class="featured-section" *ngIf="featuredNews">
       <app-principal-news [news]="featuredNews"></app-principal-news>
     </div>
 
-    <!-- News Grid -->
     <div class="news-grid" *ngIf="latestNews.length > 0">
       @for (news of latestNews; track $index) {
       <app-card [news]="news"></app-card>
       }
     </div>
 
-    <!-- Empty State -->
     @if(latestNews.length === 0){
     <div class="empty-state">
       <div class="empty-icon">
@@ -27,7 +23,7 @@
       <p class="empty-subtitle">
         Regresa más tarde para ver las últimas actualizaciones
       </p>
-      <ion-button fill="outline" class="retry-button">
+      <ion-button fill="outline" class="retry-button" (click)="loadNews()">
         <ion-icon name="refresh-outline" slot="start"></ion-icon>
         Intentar de nuevo
       </ion-button>

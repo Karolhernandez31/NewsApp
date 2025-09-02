@@ -1,8 +1,5 @@
 <div class="register-container">
   <div class="form-header">
-    <h1 class="form-title">
-      {{ isEditMode ? "Actualizar Perfil" : "Crear Cuenta" }}
-    </h1>
     <p class="form-subtitle">
       Completa tus datos para
       {{ isEditMode ? "actualizar tu perfil" : "crear tu cuenta" }}
@@ -10,7 +7,6 @@
   </div>
 
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="custom-form">
-    <!-- Name Field -->
     <div class="form-field" [class.invalid]="isInvalid('name')">
       <app-input
         label="Nombre"
@@ -34,7 +30,6 @@
       }
     </div>
 
-    <!-- Last Name Field -->
     <div class="form-field" [class.invalid]="isInvalid('lastName')">
       <app-input
         label="Apellido"

@@ -1,7 +1,6 @@
 <app-header></app-header>
 <ion-content class="login-content">
   <div class="login-container">
-    <!-- Logo y Bienvenida -->
     <div class="welcome-section">
       <div class="logo-wrapper">
         <div class="logo-circle">
@@ -9,16 +8,14 @@
         </div>
         <div class="logo-glow"></div>
       </div>
-      <h1 class="welcome-title">¡Bienvenido de nuevo!</h1>
+      <h1 class="welcome-title">¡Bienvenido!</h1>
       <p class="welcome-subtitle">
         Mantente informado con las últimas noticias
       </p>
     </div>
 
-    <!-- Formulario -->
     <div class="form-container">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <!-- Email Field -->
         <div class="input-group" [class.error-state]="isFieldInvalid('email')">
           <app-input
             formControlName="email"
@@ -32,7 +29,6 @@
           </div>
         </div>
 
-        <!-- Password Field -->
         <div
           class="input-group"
           [class.error-state]="isFieldInvalid('password')"
@@ -57,7 +53,6 @@
           </div>
         </div>
 
-        <!-- Submit Button -->
         <ion-button
           type="submit"
           expand="block"
@@ -71,7 +66,6 @@
           <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
         </ion-button>
 
-        <!-- Register Link -->
         <div class="register-section">
           <p class="register-text">
             ¿No tienes cuenta?

@@ -31,22 +31,18 @@ export class ButtonComponent {
     }
   }
 
-  // Método para cambiar el estado de loading
   setLoading(loading: boolean): void {
     this.loading = loading;
   }
 
-  // Método para habilitar/deshabilitar
   setDisabled(disabled: boolean): void {
     this.disabled = disabled;
   }
 
-  // Método para cambiar el texto
   setText(newText: string): void {
     this.text = newText;
   }
 
-  // Método para cambiar el color
   setColor(newColor: 'primary' | 'orange' | 'red'): void {
     this.color = newColor;
   }
