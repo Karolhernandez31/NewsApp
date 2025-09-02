@@ -1,0 +1,210 @@
+.app-header {
+  --background: #2b374a;
+  --border-width: 0;
+  --min-height: 70px;
+
+  ion-toolbar {
+    --background: #2b374a;
+    --color: white;
+    --min-height: 70px;
+    padding: 0 10px;
+    position: relative;
+    z-index: 2;
+
+    // Botón de retroceso
+    .back-btn {
+      --border-radius: 50%;
+      --background: rgba(255, 255, 255, 0.1);
+      --background-hover: rgba(255, 255, 255, 0.2);
+      --background-activated: rgba(255, 255, 255, 0.15);
+      width: 42px;
+      height: 42px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+
+      ion-icon {
+        color: #ffffff;
+        font-size: 20px;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+      }
+    }
+
+    .back-btn:hover {
+      --background: rgba(255, 255, 255, 0.15);
+      transform: translateX(-2px);
+    }
+
+    // Título de la aplicación
+    .app-title {
+      padding: 0 15px;
+      text-align: center;
+
+      .title-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .title-icon {
+          font-size: 24px;
+          color: #4fc3f7;
+          filter: drop-shadow(0 2px 4px rgba(79, 195, 247, 0.3));
+        }
+
+        .title-text {
+          font-size: 22px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          position: relative;
+        }
+
+        .title-badge {
+          background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+          color: white;
+          font-size: 10px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 12px;
+          letter-spacing: 0.5px;
+          box-shadow: 0 2px 5px rgba(41, 182, 246, 0.3);
+          animation: pulse 2s infinite;
+        }
+      }
+    }
+
+    // Botón de perfil
+    .profile-btn {
+      --border-radius: 50%;
+      --background: rgba(255, 255, 255, 0.1);
+      --background-hover: rgba(255, 255, 255, 0.2);
+      --background-activated: rgba(255, 255, 255, 0.15);
+      width: 46px;
+      height: 46px;
+      margin: 0 5px;
+      transition: all 0.3s ease;
+      position: relative;
+
+      .profile-button-content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .profile-icon {
+          color: white;
+          font-size: 28px;
+          filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+          transition: all 0.3s ease;
+        }
+
+        .pulse-dot {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          width: 8px;
+          height: 8px;
+          background: #4caf50;
+          border-radius: 50%;
+          border: 2px solid #2b374a;
+          animation: pulse-dot 2s infinite;
+        }
+      }
+    }
+
+    .profile-btn:hover {
+      --background: rgba(255, 255, 255, 0.15);
+      transform: translateX(2px);
+
+      .profile-icon {
+        color: #4fc3f7;
+      }
+    }
+  }
+
+  // Efecto de onda al hacer clic
+  .wave-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(circle, rgba(79, 195, 247, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Animaciones
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(41, 182, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(41, 182, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(41, 182, 246, 0);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+// Efecto de activación para botones
+.icon-btn.activated {
+  .wave-effect {
+    animation: wave 0.5s ease-out;
+  }
+}
+
+@keyframes wave {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+// Modo iOS específico
+.ios .app-header {
+  ion-toolbar {
+    --min-height: 75px;
+    padding-top: 10px;
+  }
+}
+
+// Modo Android específico
+.md .app-header {
+  ion-toolbar {
+    --min-height: 70px;
+  }
+}
+
+// Ajustes para modo oscuro
+@media (prefers-color-scheme: dark) {
+  .app-header {
+    --background: #2b374a;
+
+    ion-toolbar {
+      --background: #2b374a;
+    }
+  }
+}

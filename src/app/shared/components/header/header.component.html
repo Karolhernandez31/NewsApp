@@ -1,0 +1,34 @@
+<ion-header class="app-header">
+  <ion-toolbar>
+    @if(showBackButton){
+    <ion-buttons slot="start">
+      <ion-button fill="clear" class="icon-btn round-btn back-btn">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    }
+
+    <!-- Título -->
+    <ion-title class="app-title">
+      <div class="title-content">
+        <ion-icon name="newspaper-outline" class="title-icon"></ion-icon>
+        <span class="title-text">{{title}}</span>
+      </div>
+    </ion-title>
+
+    <!-- Botón derecho: perfil -->
+    @if(showMenuButton){
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="icon-btn profile-btn" (click)="openMenu()">
+        <div class="profile-button-content">
+          <ion-icon name="person-circle-outline" class="profile-icon"></ion-icon>
+          <div class="pulse-dot"></div>
+        </div>
+      </ion-button>
+    </ion-buttons>
+    }
+  </ion-toolbar>
+
+  <!-- Efecto de onda al hacer clic -->
+  <div class="wave-effect"></div>
+</ion-header>

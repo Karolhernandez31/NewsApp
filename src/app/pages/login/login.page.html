@@ -1,62 +1,90 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
+<ion-content class="login-content">
+  <div class="login-container">
+    <!-- Logo y Bienvenida -->
+    <div class="welcome-section">
+      <div class="logo-wrapper">
+        <div class="logo-circle">
+          <ion-icon name="newspaper" class="logo-icon"></ion-icon>
+        </div>
+        <div class="logo-glow"></div>
+      </div>
+      <h1 class="welcome-title">¡Bienvenido de nuevo!</h1>
+      <p class="welcome-subtitle">
+        Mantente informado con las últimas noticias
+      </p>
+    </div>
 
-<ion-content class="ion-padding">
-  <div class="logo-container">
-    <ion-icon name="lock-closed" color="primary" class="logo"></ion-icon>
-    <h2>Bienvenido</h2>
-    <p>Ingresa a tu cuenta para continuar</p>
+    <!-- Formulario -->
+    <div class="form-container">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- Email Field -->
+        <div class="input-group" [class.error-state]="isFieldInvalid('email')">
+          <app-input
+            formControlName="email"
+            [type]="'email'"
+            [placeholder]="'usuario@ejemplo.com'"
+            [label]="'Correo Electronico'"
+          ></app-input>
+          <div class="error-message" *ngIf="isFieldInvalid('email')">
+            <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+            <span>{{ getErrorMessage('email') }}</span>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div
+          class="input-group"
+          [class.error-state]="isFieldInvalid('password')"
+        >
+          <div class="input-wrapper">
+            <div class="input-icon">
+              <ion-icon name="lock-closed"></ion-icon>
+            </div>
+            <div class="input-content">
+              <ion-label class="floating-label">Contraseña</ion-label>
+              <ion-input
+                formControlName="password"
+                type="password"
+                placeholder="Mínimo 6 caracteres"
+                class="custom-input"
+              ></ion-input>
+            </div>
+          </div>
+          <div class="error-message" *ngIf="isFieldInvalid('password')">
+            <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+            <span>{{ getErrorMessage('password') }}</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <ion-button
+          type="submit"
+          expand="block"
+          class="login-button"
+          [disabled]="!loginForm.valid"
+        >
+          <div class="button-content" *ngIf="!isLoading">
+            <ion-icon name="log-in" class="button-icon"></ion-icon>
+            <span>Iniciar Sesión</span>
+          </div>
+          <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        </ion-button>
+
+        <!-- Register Link -->
+        <div class="register-section">
+          <p class="register-text">
+            ¿No tienes cuenta?
+            <ion-button
+              fill="clear"
+              routerLink="/register"
+              class="register-link"
+            >
+              ¡Regístrate aquí!
+            </ion-button>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <!-- Email Field -->
-    <ion-item class="input-item" [class.invalid]="isFieldInvalid('email')">
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input
-        formControlName="email"
-        type="email"
-        placeholder="tu@email.com">
-      </ion-input>
-      <ion-icon name="mail" slot="start"></ion-icon>
-    </ion-item>
-    <div class="error-message" *ngIf="isFieldInvalid('email')">
-      <ion-text color="danger">
-        {{ getErrorMessage('email') }}
-      </ion-text>
-    </div>
-
-    <!-- Password Field -->
-    <ion-item class="input-item" [class.invalid]="isFieldInvalid('password')">
-      <ion-label position="stacked">Contraseña</ion-label>
-      <ion-input
-        formControlName="password"
-        type="password"
-        placeholder="Mínimo 6 caracteres">
-      </ion-input>
-      <ion-icon name="key" slot="start"></ion-icon>
-    </ion-item>
-    <div class="error-message" *ngIf="isFieldInvalid('password')">
-      <ion-text color="danger">
-        {{ getErrorMessage('password') }}
-      </ion-text>
-    </div>
-
-    <!-- Submit Button -->
-    <ion-button
-      type="submit"
-      expand="block"
-      class="login-button"
-      [disabled]="!loginForm.valid">
-      <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
-      <span *ngIf="!isLoading">Iniciar Sesión</span>
-    </ion-button>
-
-    <!-- Register Link -->
-    <div class="register-container">
-      <p>¿No tienes una cuenta? <ion-button fill="clear" routerLink="/register">Regístrate</ion-button></p>
-    </div>
-  </form>
 </ion-content>

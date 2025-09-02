@@ -1,25 +1,93 @@
-form {
-  padding: 20px;
+// register.page.scss
+.register-page-content {
+  --background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --padding-bottom: 20px;
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 20px;
+    padding-top: 0;
+
+    // Asegura que el formulario tenga espacio para scroll
+    app-user-form {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 40px; // Espacio extra al final para scroll
+    }
+  }
 }
 
-ion-item {
-  --border-color: var(--ion-color-medium);
-  margin-bottom: 5px;
+// Ajustes específicos para cuando el teclado está abierto
+.keyboard-visible {
+  .register-page-content {
+    --keyboard-offset: 0; // Ionic manejará esto automáticamente
 
-  &.item-has-focus {
-    --border-color: var(--ion-color-primary);
+    .page-container {
+      padding-bottom: 300px; // Espacio extra para que el teclado no tape los campos
+    }
+
+    app-user-form {
+      margin-bottom: 100px; // Más espacio al final cuando el teclado está visible
+    }
+  }
+}
+
+// Para el componente user-form (agregar estos estilos)
+.form-container {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+
+  // Espaciado interno para scroll
+  .custom-form {
+    max-height: 100%;
+    overflow: visible;
+
+    .form-field {
+      margin-bottom: 20px;
+
+      &:last-of-type {
+        margin-bottom: 30px; // Espacio extra antes de los botones
+      }
+    }
+  }
+}
+
+// Asegurar que los inputs sean fácilmente focusables
+.custom-input {
+  &::part(native) {
+    min-height: 50px; // Altura suficiente para tocar fácilmente
+  }
+}
+
+// Responsive para dispositivos móviles
+@media (max-width: 576px) {
+  .register-page-content {
+    --padding-start: 15px;
+    --padding-end: 15px;
+
+    .page-container {
+      padding: 15px;
+      padding-top: 0;
+
+      app-user-form {
+        margin-top: 15px;
+        margin-bottom: 30px;
+      }
+    }
   }
 
-  &.ion-invalid.ion-touched {
-    --border-color: var(--ion-color-danger);
+  .form-container {
+    padding: 20px;
+    border-radius: 15px;
   }
 }
 
-.error-message {
-  margin: 0 0 15px 16px;
-  font-size: 14px;
-}
-
-ion-button {
-  margin-top: 20px;
-}
+// Manejo del teclado con JavaScript (en tu .ts file)
+// Agrega esto a tu página RegisterPage

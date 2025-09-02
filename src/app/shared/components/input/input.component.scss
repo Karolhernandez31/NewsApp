@@ -1,0 +1,84 @@
+.input-wrapper {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-secondary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  &:focus-within {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+
+    &::before {
+      opacity: 0.05;
+    }
+
+    .input-icon ion-icon {
+      color: var(--secondary-color);
+      transform: scale(1.1);
+    }
+
+    .floating-label {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+  }
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+
+  ion-icon {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+  }
+}
+
+.input-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+
+  .floating-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .custom-input {
+    --background: transparent;
+    --padding-top: 1.75rem;
+    --padding-bottom: 0.75rem;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --color: var(--text-primary);
+    font-size: 1rem;
+  }
+}

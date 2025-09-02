@@ -13,20 +13,34 @@ import { UserFormComponent } from '../user-form/user-form.component';
 })
 export class MenuComponent implements OnInit {
   @Input() contentId!: string;
-  constructor(private menuController: MenuController, private router: Router, private modalCtrl: ModalController) {}
+  user!: User | null;
 
-  ngOnInit() {}
+  constructor(
+    private menuController: MenuController,
+    private router: Router,
+    private modalCtrl: ModalController
+  ) {}
+
+  ngOnInit() {
+    this.loadUser();
+  }
+
   logout() {
     localStorage.removeItem('loggedUser');
     this.router.navigate(['/login']);
     this.menuController.close();
   }
 
-   async openSettings() {
+  async openProfile() {
     this.menuController.close('main-menu');
     const modal = await this.modalCtrl.create({
       component: UserUpdateComponent,
     });
     return await modal.present();
+  }
+
+  loadUser() {
+    const userData = localStorage.getItem('loggedUser');
+    this.user = userData ? JSON.parse(userData) : null;
   }
 }

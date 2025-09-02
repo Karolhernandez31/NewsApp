@@ -1,13 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Formulario de Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Crear Cuenta'"></app-header>
 
-<ion-content>
- <app-user-form
-    mode="register"
-    (formSubmit)="onRegisterSubmit($event)"
-    (formCancel)="onCancel()">
-  </app-user-form>
+<ion-content class="register-page-content" [scrollEvents]="true" [scrollY]="true">
+  <div class="page-container">
+    <app-user-form
+      mode="register"
+      (formSubmit)="onRegisterSubmit($event)"
+      (formCancel)="onCancel()">
+    </app-user-form>
+  </div>
 </ion-content>

@@ -1,33 +1,44 @@
+<app-header [title]="'NewsApp'" [showBackButton]="true"></app-header>
+<ion-content class="news-detail-content">
+  <div class="news-container">
+    <!-- Header de la noticia -->
+    <div class="news-header">
+      <h1 class="news-title">{{news.title}}</h1>
+    </div>
 
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      The News
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <div class="modal-content">
-    <h2>{{news.title}}</h2>
-    <p class="news-meta">
+    <!-- Imagen principal -->
+    <div class="news-image-container" *ngIf="news.urlToImage">
+      <img
+        [src]="news.urlToImage"
+        [alt]="news.title"
+        class="news-image" />
+    </div>
+
+    <!-- Información de la noticia -->
+    <div class="news-info">
       <span class="source">{{news.source.name}}</span>
       <span class="bullet">•</span>
       <span class="date">{{news.publishedAt}}</span>
       <span class="bullet">•</span>
-      <span class="authors">By {{news.author}}</span>
-    </p>
-    <img [src]="news.urlToImage" [alt]="news.title" *ngIf="news.urlToImage" />
-    <p class="description">{{news.description}}</p>
-    <p class="content">{{news.content}}</p>
-    <div class="read-more">
-      <ion-button fill="clear" size="small" href="{{news.url}}" target="_blank">
-        Read full article
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      <span class="author">Por {{news.author || 'Redacción'}}</span>
+    </div>
+
+    <!-- Contenido de la noticia -->
+    <div class="news-body">
+      <div class="news-content">
+        <p>{{news.content}}</p>
+      </div>
+    </div>
+
+    <!-- Botón de leer completo -->
+    <div class="read-more-container">
+      <ion-button
+        fill="solid"
+        shape="round"
+        class="read-more-btn"
+        (click)="openNewsWeb()">
+        <ion-icon name="open-outline" slot="start"></ion-icon>
+        Leer artículo completo
       </ion-button>
     </div>
   </div>

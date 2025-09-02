@@ -33,7 +33,6 @@ export class HomePage {
 
   constructor(
     private http: HttpService,
-    private menuController: MenuController,
     private modalCtr: ModalController
   ) {}
 
@@ -58,10 +57,6 @@ export class HomePage {
         console.error('Error loading news', err);
         this.isLoading = false;
       });
-  }
-
-  openMenu() {
-    this.menuController.open('main-menu');
   }
 
   openNews(title: any){

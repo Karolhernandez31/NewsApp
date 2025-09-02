@@ -1,3 +1,15 @@
-<p>
-  input works!
-</p>
+<div class="input-wrapper">
+  <div class="input-icon">
+    <ion-icon name="lock-closed"></ion-icon>
+  </div>
+  <div class="input-content">
+    <ion-label class="floating-label">{{ label }}</ion-label>
+    <ion-input
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      (ionInput)="onInputChange($event)"
+      class="custom-input"
+    ></ion-input>
+  </div>
+</div>

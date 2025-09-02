@@ -5,18 +5,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { InputComponent } from './components/input/input.component';
+import { HeaderComponent } from './components/header/header.component';
+
+const COMPONENTS = [
+  UserFormComponent,
+  UserUpdateComponent,
+  ModalComponent,
+  InputComponent,
+  HeaderComponent
+];
 
 @NgModule({
-  declarations: [UserFormComponent,UserUpdateComponent, ModalComponent],
+  declarations: [...COMPONENTS],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
   exports: [
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    UserFormComponent,
-    UserUpdateComponent,
-    ModalComponent
+    ...COMPONENTS
   ],
 })
 export class SharedModule {}

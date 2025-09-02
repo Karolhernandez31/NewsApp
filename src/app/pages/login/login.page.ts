@@ -66,6 +66,7 @@ export class LoginPage implements OnInit {
     const isLogged = this.userService.onLogin(this.loginForm.value);
     if (isLogged) {
       this.router.navigate(['/home']);
+      this.loginForm.reset();
     } else {
       await this.toastCtrl.show('Email or password incorrect', 'danger');
     }

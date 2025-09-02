@@ -1,76 +1,111 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="openMenu()">
-        <ion-icon slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
+<app-header [showMenuButton]="true"></app-header>
+<ion-content class="home-content">
   <!-- Loading State -->
   <div class="loading-container" *ngIf="isLoading">
-    <ion-spinner name="crescent"></ion-spinner>
-    <p>Loading latest news...</p>
+    <div class="loading-wrapper">
+      <div class="loading-icon">
+        <ion-spinner name="crescent" color="primary"></ion-spinner>
+      </div>
+      <h3 class="loading-title">Cargando noticias</h3>
+      <p class="loading-subtitle">Obteniendo las últimas actualizaciones...</p>
+    </div>
   </div>
 
   <!-- Content -->
-  <div *ngIf="!isLoading">
+  <div class="news-container" *ngIf="!isLoading">
+
     <!-- Featured News -->
-    <div class="featured-news" *ngIf="featuredNews">
-      <div class="featured-header">
-        <h1>{{featuredNews.title}}</h1>
-        <div class="news-meta">
-          <span class="source">{{featuredNews.source.name}}</span>
-          <span class="bullet">•</span>
-          <span class="date">{{featuredNews.publishedAt}}</span>
-          <span class="bullet">•</span>
-          <span class="authors">By {{featuredNews.author}}</span>
-        </div>
-      </div>
-
-      <div class="featured-content">
-        <p>{{featuredNews.url}}</p>
-        <div class="read-more">
-          <ion-button fill="clear" size="small">
-            Read more
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
-          </ion-button>
-        </div>
-      </div>
-    </div>
-
-    <ion-list-header>
-      <ion-label>Latest News</ion-label>
-    </ion-list-header>
-
-    <!-- News List -->
-    <ion-list lines="none">
-      <ion-item *ngFor="let news of latestNews" class="news-item" [button]="true" (click)="openNews(news.title)">
-        <ion-thumbnail slot="start">
-          <img [src]="news.urlToImage" [alt]="news.title" />
-        </ion-thumbnail>
-        <ion-label>
-          <h3>{{news.title}}</h3>
-          <p class="summary">{{news.description}}</p>
-          <div class="item-meta">
-            <span class="source">{{news.source.name}}</span>
-            <span class="bullet">•</span>
-            <span class="date">{{news.publishedAt}}</span>
+    <div class="featured-section" *ngIf="featuredNews">
+      <div class="featured-card">
+        <div class="featured-image">
+          <img [src]="featuredNews.urlToImage || 'assets/images/default-news.jpg'"
+               [alt]="featuredNews.title"
+               onerror="this.src='assets/images/default-news.jpg'">
+          <div class="image-overlay">
+            <div class="category-badge">
+              <ion-icon name="flame"></ion-icon>
+              <span>Destacada</span>
+            </div>
           </div>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+        </div>
 
-    <!-- No news message -->
-    <div class="empty-state" *ngIf="latestNews.length === 0">
-      <ion-icon name="newspaper-outline"></ion-icon>
-      <h3>No news available</h3>
-      <p>Check back later for the latest updates.</p>
+        <div class="featured-content">
+          <div class="news-meta">
+            <div class="source-info">
+              <div class="source-avatar">
+                <ion-icon name="radio"></ion-icon>
+              </div>
+              <span class="source-name">{{featuredNews.source.name}}</span>
+            </div>
+            <div class="meta-details">
+              <span class="date">{{featuredNews.publishedAt}}</span>
+              <span class="bullet">•</span>
+              <span class="author" *ngIf="featuredNews.author">{{featuredNews.author}}</span>
+            </div>
+          </div>
+
+          <h1 class="featured-title">{{featuredNews.title}}</h1>
+
+          <p class="featured-description" *ngIf="featuredNews.description">
+            {{featuredNews.description}}
+          </p>
+
+          <div class="featured-actions">
+            <ion-button fill="solid" class="read-button" (click)="openNews(featuredNews.title)">
+              <ion-icon name="book-outline" slot="start"></ion-icon>
+              Leer completa
+            </ion-button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- News Grid -->
+    <div class="news-grid" *ngIf="latestNews.length > 0">
+      <div class="news-card"
+           *ngFor="let news of latestNews"
+           (click)="openNews(news.title)">
+
+        <div class="card-image">
+          <img [src]="news.urlToImage || 'assets/images/default-news.jpg'"
+               [alt]="news.title"
+               onerror="this.src='assets/images/default-news.jpg'">
+          <div class="image-gradient"></div>
+        </div>
+
+        <div class="card-content">
+          <div class="card-meta">
+            <div class="source-badge">
+              <ion-icon name="radio-outline"></ion-icon>
+              <span>{{news.source.name}}</span>
+            </div>
+            <div class="time-badge">
+              <ion-icon name="time-outline"></ion-icon>
+              <span>{{news.publishedAt}}</span>
+            </div>
+          </div>
+
+          <h3 class="card-title">{{news.title}}</h3>
+
+          <p class="card-description" *ngIf="news.description">
+            {{news.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!isLoading && latestNews.length === 0">
+      <div class="empty-icon">
+        <ion-icon name="newspaper-outline"></ion-icon>
+      </div>
+      <h3 class="empty-title">No hay noticias disponibles</h3>
+      <p class="empty-subtitle">Regresa más tarde para ver las últimas actualizaciones</p>
+      <ion-button fill="outline" class="retry-button">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Intentar de nuevo
+      </ion-button>
+    </div>
+
   </div>
 </ion-content>
