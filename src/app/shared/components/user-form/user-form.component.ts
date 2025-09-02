@@ -137,4 +137,23 @@ export class UserFormComponent implements OnInit {
   private getCountry(iso2: string): Country | undefined {
     return this.countries.find((c) => c.iso2 === iso2);
   }
+
+  getSelectedCountry(): any {
+  const countryCode = this.userForm.get('country')?.value;
+  if (!countryCode) return null;
+
+  return this.countries.find(country => country.iso2 === countryCode);
+}
+
+onCountryChange(country: any): void {
+  if (country) {
+    this.userForm.get('country')?.setValue(country.iso2);
+    this.userForm.get('country')?.markAsTouched();
+  } else {
+    this.userForm.get('country')?.setValue('');
+  }
+
+  // Trigger validation
+  this.userForm.get('country')?.updateValueAndValidity();
+}
 }

@@ -56,30 +56,22 @@
     </div>
 
     <!-- Country Field -->
-    <div class="form-field" [class.invalid]="isInvalid('country')">
-      <div class="custom-select-container">
-        <ion-label class="floating-label">País</ion-label>
-        <ion-select
-          formControlName="country"
-          interface="action-sheet"
-          class="custom-select"
-          [class.has-value]="userForm.get('country')?.value"
-        >
-          <ion-select-option value="">Selecciona un país</ion-select-option>
-          @for (country of countries; track country.iso2) {
-          <ion-select-option [value]="country.iso2">
-            {{ country.name }}
-          </ion-select-option>
-          }
-        </ion-select>
-        <ion-icon name="chevron-down-outline" class="select-arrow"></ion-icon>
-      </div>
-      @if (isInvalid('country')) {
-      <div class="error-message">
-        <ion-text color="danger">Debe seleccionar un país</ion-text>
-      </div>
-      }
+<div class="form-field" [class.invalid]="isInvalid('country')">
+  <app-country-select
+    [label]="'País'"
+    [placeholder]="'Selecciona un país'"
+    [countries]="countries"
+    [selectedCountry]="getSelectedCountry()"
+    (countryChange)="onCountryChange($event)"
+    [class.has-error]="isInvalid('country')">
+  </app-country-select>
+
+  @if (isInvalid('country')) {
+    <div class="error-message">
+      <ion-text color="danger">Debe seleccionar un país</ion-text>
     </div>
+  }
+</div>
 
     <!-- Email Field -->
     <div class="form-field" [class.invalid]="isInvalid('email')">

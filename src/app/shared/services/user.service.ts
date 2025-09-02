@@ -14,18 +14,19 @@ export class UserService {
 
   registerUser(user: Omit<User, 'id' | 'password'> & { password: string }): boolean {
     const users: User[] = JSON.parse(localStorage.getItem(this.db) || '[]');
-
     if (users.find(u => u.email === user.email)) return false;
+
 
     const newUser: User = {
       id: shortUUID.generate(),
       name: user.name,
       lastName: user.lastName,
       email: user.email,
-      password: this.encryptSrv.encryptPassword(user.password),
+      password: user.password,
       country: user.country
     };
-
+    console.log('password ' , user.password);
+    console.log(newUser);
     users.push(newUser);
     localStorage.setItem(this.db, JSON.stringify(users));
     return true;

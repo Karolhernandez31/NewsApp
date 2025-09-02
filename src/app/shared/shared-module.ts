@@ -11,6 +11,7 @@ import { CardComponent } from './components/card/card.component';
 import { PrincipalNewsComponent } from './components/principal-news/principal-news.component';
 import { ButtonComponent } from './components/button/button.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CountrySelectComponent } from './components/country-select/country-select.component';
 
 const COMPONENTS = [
   UserFormComponent,
@@ -20,7 +21,8 @@ const COMPONENTS = [
   HeaderComponent,
   CardComponent,
   PrincipalNewsComponent,
-  ButtonComponent
+  ButtonComponent,
+  CountrySelectComponent
 ];
 
 @NgModule({

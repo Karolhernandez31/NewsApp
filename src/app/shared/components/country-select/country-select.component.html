@@ -1,0 +1,63 @@
+<div class="country-select-container" [class.focused]="isFocused" [class.has-value]="selectedCountry">
+  <ion-label class="floating-label">{{ label }}</ion-label>
+
+  <div class="select-trigger" (click)="openSelection()">
+    <div class="selected-value">
+      @if (selectedCountry) {
+        <div class="country-display">
+          <img
+            [src]="'https://flagcdn.com/w40/' + selectedCountry.iso2.toLowerCase() + '.png'"
+            [alt]="selectedCountry.name"
+            class="country-flag"
+            onerror="this.style.display='none'">
+          <span class="country-name">{{ selectedCountry.name }}</span>
+        </div>
+      } @else {
+        <span class="placeholder">{{ placeholder }}</span>
+      }
+    </div>
+
+    <ion-icon name="chevron-down-outline" class="select-arrow" [class.rotated]="isOpen"></ion-icon>
+  </div>
+
+  @if (isOpen) {
+    <div class="options-container">
+      <div class="search-container" *ngIf="showSearch">
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+        <input
+          type="text"
+          placeholder="Buscar país..."
+          [(ngModel)]="searchTerm"
+          (input)="filterCountries()"
+          class="search-input">
+      </div>
+
+      <div class="options-list">
+        @for (country of filteredCountries; track country.iso2) {
+          <div
+            class="option-item"
+            [class.selected]="isSelected(country)"
+            (click)="selectCountry(country)">
+            <img
+              [src]="'https://flagcdn.com/w40/' + country.iso2.toLowerCase() + '.png'"
+              [alt]="country.name"
+              class="option-flag"
+              onerror="this.style.display='none'">
+            <span class="option-text">{{ country.name }}</span>
+
+            @if (isSelected(country)) {
+              <ion-icon name="checkmark-outline" class="check-icon"></ion-icon>
+            }
+          </div>
+        }
+
+        @if (filteredCountries.length === 0) {
+          <div class="no-results">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <span>No se encontraron países</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
